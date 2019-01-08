@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Asynchronous FastROCS Server Web (ver.{{ version }}, {{ date }})</title>
+    <script type="text/javascript" src="/static/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/static/socket.io-1.3.5.min.js"></script>
+    <script type="text/javascript" src="/static/dropzone.js"></script>
+    <link rel="stylesheet" href="/static/dropzone.css">
+
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        font-family: helvetica;
+      }
+
+     .bred {
+       color: red;
+       font-weight: bold;
+     }
+
+      div.title {
+        padding: 5px;
+        text-align: center;
+        font-size: 140%;
+        font-weight: bold;
+        color: white;
+        background-color: #888;
+      }
+
+      div.status {
+        padding: 3px 20px;
+        color: gray;
+        font-size: 100%;
+        font-weight: bold;
+      }
+
+      div.listings {
+        margin: 3px 0px;
+        padding: 3px 10px;
+        background-color: #eee;
+      }
+
+      div.listings td {
+        padding: 0px 10px;
+        font-size: 10pt;
+      }
+
+      div#tabular {
+        padding: 0px 20px;
+        margin: 0px 0px;
+      }
+
+     .dropzone {
+       min-height: 60px;
+       padding: 0px;
+       background: white;
+       font-weight: bold;
+       border: 1px dashed black;
+     }
+
+     .dz-message {
+       padding: 0px;
+       margin: 0px;
+       color: darkblue;
+     }
+    </style>
+  </head>
+  <body>
+    <div class="title">Asynchronous FastROCS Server Web (ver.{{ version }}, {{ date }})</div>
+    <div class=page>
+      {% block body %}{% endblock %}
+    </div>
+</html>

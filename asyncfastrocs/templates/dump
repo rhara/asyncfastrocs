@@ -1,0 +1,30 @@
+      {% if qs %}
+      <table>
+        {% for q in qs %}
+        <tr>
+          <td><a href="/download/queue/{{ q.oid }}">{{ q.oid }}</a></td>
+          <td>{{ q.timestamp }}</td>
+          <td>{{ q.filename }}</td>
+        </tr>
+        {%  endfor %}
+      </table>
+      {% else %}
+      <p style="text-align:center;">(Queue is empty)</p>
+      {% endif %}
+    </td>
+    <td style="width:50%;">
+      <h4>&#9632; Results</h4>
+      <table>
+        {% for r in rs %}
+        <tr>
+          <td><a href="/download/result/{{ r.oid }}">{{ r.oid }}</a></td>
+          <td>
+            {% if r['report'] %}
+            <a href="/download/report/{{ r.oid }}">[PDF]</a>
+            {% endif %}
+          </td>
+          <td>{{ r.timestamp }}</td>
+          <td>from {{ r.filename }}</td>
+        </tr>
+        {% endfor %}
+      </table>

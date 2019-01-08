@@ -1,0 +1,10 @@
+<h2>Change DB</h2>
+
+<table>
+  {% for db in dbs %}
+  <tr>
+    <td><a href="/changedb/{{ db.name }}">{{ db.name }}</a></td>
+    <td style="text-align: right;">{{ "{:,}".format(db.molcount) }} mols</td>
+    <td>{{ db.path }}</td>
+  </tr>
+  {% endfor %}
