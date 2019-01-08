@@ -1,4 +1,4 @@
-# Asynchronous FastROCS
+## Asynchronous FastROCS v.2 (Flask + FastROCS)
 
 ### INSTALLATION
 
