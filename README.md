@@ -29,3 +29,9 @@ python -m asyncfastrocs.initialize
 FLASK_APP=asyncfastrocs.app flask run --host 0.0.0.0 >> LOG 2>&1 &
 disown
 ```
+
+### How to kill the daemonized servers
+
+```
+ps axww | grep -e flask -e ShapeDatabaseServer | awk '{print $1}' | xargs kill -9
+```
