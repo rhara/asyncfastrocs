@@ -17,15 +17,15 @@ def poll(app):
             dbname = active_db['name']
             oid = r['oid']
             ext = r['ext']
+            hitsize = r['hitsize']
 
             st.update_repo(oid, status=1, dbname=dbname)
 
             client = d['FASTROCS_CLIENT']
             host = d['FASTROCS_HOST']
-            hit_size = d['HIT_SIZE']
             query = f'instance/{oid}/query.{ext}'
             hitlist = f'instance/{oid}/hitlist.sdf'
-            command = f'{client} {host} {query} {hitlist} {hit_size}'
+            command = f'{client} {host} {query} {hitlist} {hitsize}'
             print(f'[LOG:COMMAND] {command}', flush=True)
 
             proc = misc.run_proc(command)
@@ -38,10 +38,8 @@ def poll(app):
                  misc.fix_sdf(hitlist)
 
                  rocs_report = d['ROCS_REPORT']
-                 max_pages = d['MAX_PAGES']
                  report_pdf = f'instance/{oid}/report.pdf'
-                 command = f"{rocs_report} -in {hitlist} -refmol {query} -out {report_pdf} " \
-                           f"-maxpages {max_pages}"
+                 command = f"{rocs_report} -in {hitlist} -refmol {query} -out {report_pdf}"
                  print(f'[LOG:COMMAND] {command}', flush=True)
 
                  proc = misc.run_proc(command)

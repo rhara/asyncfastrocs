@@ -7,10 +7,12 @@
 
 <div id="dropzone" style="padding: 0px;">
   <form action="/" class="dropzone dz-clickable">
+    <div style="padding:0px 0px 0px 5px;">Hitlist size: <input type="text" name="hitsize" value="{{ hitsize}}" /></div>
 	<div style="padding:0px 0px 0px 5px;"><a href="/" style="font-size:75%;">Clear</a></div>
     <div class="dz-message">Drop multiple files here or click to upload.</div>
   </form>
 </div>
+
 
 <div class="listings">
   <div id="tabular">{{ table|safe }}</div>

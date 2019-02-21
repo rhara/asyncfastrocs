@@ -53,7 +53,7 @@ class QServer(Flask):
         self.fastrocs_server_proc = mp.Process(target=fastrocs_server.run, args=(self,))
         self.fastrocs_server_proc.start()
 
-    def upload(self, file, remote_addr):
+    def upload(self, file, hitsize, remote_addr):
         oid = uuid.uuid4().hex
         filename = secure_filename(file.filename)
         ext = oechem.OEGetFileExtension(filename)
@@ -67,7 +67,8 @@ class QServer(Flask):
             return
 
         st = state.State()
-        st.repo_new(oid, filename, remote_addr)
+        print('hitsize:', hitsize) #@@
+        st.repo_new(oid, filename, hitsize, remote_addr)
 
     def download(self, klass, oid):
         st = state.State()

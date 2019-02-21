@@ -66,15 +66,15 @@ class State:
             count += 1
         return count
 
-    def repo_new(self, oid, filename, remote_addr):
+    def repo_new(self, oid, filename, hitsize, remote_addr):
         ext = oechem.OEGetFileExtension(filename)
         basename = filename[:-len(ext)-1]
         reportable = 0 if ext == 'sq' else 1
         timestamp1 = time.time()
 
-        self('INSERT into repo (oid, basename, ext, reportable, timestamp1, ip) '
-             'VALUES (?,?,?,?,?,?)', \
-             (oid, basename, ext, reportable, timestamp1, remote_addr),
+        self('INSERT into repo (oid, basename, ext, hitsize, reportable, timestamp1, ip) '
+             'VALUES (?,?,?,?,?,?,?)', \
+             (oid, basename, ext, hitsize, reportable, timestamp1, remote_addr),
              commit=True)
 
     def update_repo(self, oid, **kwargs):

@@ -12,6 +12,7 @@ def  make_table(config):
   <tr>
     <td></td>
     <td><b>Query</b></td>
+    <td><b>Hitsize</b></td>
     <td><b>Hitlist</b></td>
     <td><b>ROCS Report</b></td>
     <td><b>DB</b></td>
@@ -28,6 +29,7 @@ def  make_table(config):
         reportable = r['reportable']
         timestamp1 = r['timestamp1']
         timestamp2 = r['timestamp2']
+        hitsize = r['hitsize']
         dbname = r['dbname']
         rstatus = r['status']
         ip = r['ip']
@@ -50,6 +52,7 @@ def  make_table(config):
   {tr_begin}
     <td>{rstatus_mark}</td>
     <td>{query_link}</td>
+    <td align="right">{hitsize}</td>
     <td>{result_link}</td>
     <td>{report_link}</td>
     <td>{dbname}</td>

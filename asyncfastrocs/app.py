@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect
+from flask import request, render_template, redirect, session
 from flask_socketio import SocketIO
 from asyncfastrocs import qserver, misc, state, messaging, version
 from threading import Lock
@@ -48,7 +48,17 @@ def add_header(response):
 def home():
     class NoFileException(Exception): pass
 
+    try:
+        hitsize = int(session['hitsize'])
+    except:
+        hitsize = 100
+
     if request.method == 'POST':
+        try:
+            hitsize = int(request.form['hitsize'])
+            session['hitsize'] = hitsize
+        except:
+            hitsize = 100
         try:
             file = request.files['file']
             if file.filename == '':
@@ -58,14 +68,16 @@ def home():
         if file and misc.is_allowed_file(file.filename):
             # remote_addr = request.access_route[0]
             remote_addr = request.environ['werkzeug.proxy_fix.orig_remote_addr']
-            app.upload(file, remote_addr)
+            print('@@@', hitsize) #@@
+            app.upload(file, hitsize, remote_addr)
             return redirect('/')
     else:
         table = messaging.make_table(app.config)
         db_status = messaging.make_dbnote()
         return render_template('index.html', table=table, db_status=db_status,
                                version=version.ASYNCFASTROCS_VERSION,
-                               date=version.ASYNCFASTROCS_DATE)
+                               date=version.ASYNCFASTROCS_DATE,
+                               hitsize=hitsize)
 
 @app.route('/download/<klass>/<oid>')
 def download(klass, oid):

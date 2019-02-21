@@ -8,6 +8,7 @@ create table repo (
     status int default 0,
 --  status 0: queued, 1: under process, 2: done
     ip text default '0.0.0.0',
+    hitsize int default 100,
     dbname text default ''
 );
 
